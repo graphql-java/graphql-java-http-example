@@ -116,11 +116,9 @@ public class HttpMain extends AbstractHandler {
         // loading of data (in this case StarWars characters) happens.  We pass that to data
         // fetchers via the graphql context object.
         //
-        DataLoaderRegistry dataLoaderRegistry = context.getDataLoaderRegistry();
-
 
         DataLoaderDispatcherInstrumentation dlInstrumentation =
-                new DataLoaderDispatcherInstrumentation(dataLoaderRegistry, newOptions().includeStatistics(true));
+                new DataLoaderDispatcherInstrumentation(newOptions().includeStatistics(true));
 
         Instrumentation instrumentation = new ChainedInstrumentation(
                 asList(new TracingInstrumentation(), dlInstrumentation)
